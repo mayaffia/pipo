@@ -6,10 +6,10 @@ import {
 } from "react-router-dom";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import DashboardPage from "./pages/DashboardPage";
-import TasksPage from "./pages/TasksPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import TasksPage from "./pages/TasksPage/TasksPage";
 
 const theme = createTheme({
   palette: {
