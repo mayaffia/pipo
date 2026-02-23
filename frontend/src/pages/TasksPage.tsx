@@ -23,6 +23,8 @@ import {
   Fade,
   Alert,
   Snackbar,
+  Menu,
+  ListItemIcon,
 } from "@mui/material";
 import {
   Delete as DeleteIcon,
@@ -31,6 +33,7 @@ import {
   CheckCircle as CheckCircleIcon,
   RadioButtonUnchecked as RadioButtonUncheckedIcon,
   AccessTime as AccessTimeIcon,
+  MoreVert as MoreVertIcon,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { apiService } from "../services/api";
@@ -44,6 +47,10 @@ const TasksPage: React.FC = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [filterStatus, setFilterStatus] = useState<TaskStatus | "all">("all");
+  const [statusMenuAnchor, setStatusMenuAnchor] = useState<null | HTMLElement>(
+    null,
+  );
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
@@ -53,7 +60,7 @@ const TasksPage: React.FC = () => {
     title: "",
     description: "",
     status: TaskStatus.TODO,
-    priority: TaskPriority.MEDIUM,
+    priority: TaskPriority.LOW,
   });
 
   useEffect(() => {
@@ -108,7 +115,7 @@ const TasksPage: React.FC = () => {
         title: "",
         description: "",
         status: TaskStatus.TODO,
-        priority: TaskPriority.MEDIUM,
+        priority: TaskPriority.LOW,
       });
       showSnackbar("Task created successfully!", "success");
     } catch (error) {
@@ -149,7 +156,7 @@ const TasksPage: React.FC = () => {
         title: "",
         description: "",
         status: TaskStatus.TODO,
-        priority: TaskPriority.MEDIUM,
+        priority: TaskPriority.LOW,
       });
       showSnackbar("Task updated successfully!", "success");
     } catch (error) {
@@ -165,39 +172,67 @@ const TasksPage: React.FC = () => {
       title: "",
       description: "",
       status: TaskStatus.TODO,
-      priority: TaskPriority.MEDIUM,
+      priority: TaskPriority.LOW,
     });
   };
 
-  const handleToggleStatus = async (task: Task) => {
-    const newStatus =
-      task.status === TaskStatus.DONE ? TaskStatus.TODO : TaskStatus.DONE;
+  const handleOpenStatusMenu = (
+    event: React.MouseEvent<HTMLElement>,
+    task: Task,
+  ) => {
+    setStatusMenuAnchor(event.currentTarget);
+    setSelectedTask(task);
+  };
+
+  const handleCloseStatusMenu = () => {
+    setStatusMenuAnchor(null);
+    setSelectedTask(null);
+  };
+
+  const handleChangeStatus = async (newStatus: TaskStatus) => {
+    if (!selectedTask) return;
 
     try {
-      const updatedTask = await apiService.updateTask(task.id, {
+      // Create updated task object with all existing fields plus new status
+      const updatedTask = await apiService.updateTask(selectedTask.id, {
+        title: selectedTask.title,
+        description: selectedTask.description,
         status: newStatus,
+        priority: selectedTask.priority,
       });
-      setAllTasks(allTasks.map((t) => (t.id === task.id ? updatedTask : t)));
+
+      // Update allTasks with the complete task data
+      const updatedAllTasks = allTasks.map((t) =>
+        t.id === selectedTask.id ? updatedTask : t,
+      );
+      setAllTasks(updatedAllTasks);
+
+      const statusLabels = {
+        [TaskStatus.TODO]: "To Do",
+        [TaskStatus.IN_PROGRESS]: "In Progress",
+        [TaskStatus.DONE]: "Done",
+      };
+
       showSnackbar(
-        `Task marked as ${newStatus === TaskStatus.DONE ? "completed" : "incomplete"}`,
+        `Task status changed to ${statusLabels[newStatus]}`,
         "success",
       );
     } catch (error) {
       console.error("Failed to update task status:", error);
       showSnackbar("Failed to update task status", "error");
+    } finally {
+      handleCloseStatusMenu();
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (window.confirm("Are you sure you want to delete this task?")) {
-      try {
-        await apiService.deleteTask(id);
-        setAllTasks(allTasks.filter((task) => task.id !== id));
-        showSnackbar("Task deleted successfully", "success");
-      } catch (error) {
-        console.error("Failed to delete task:", error);
-        showSnackbar("Failed to delete task", "error");
-      }
+    try {
+      await apiService.deleteTask(id);
+      setAllTasks(allTasks.filter((task) => task.id !== id));
+      showSnackbar("Task deleted successfully", "success");
+    } catch (error) {
+      console.error("Failed to delete task:", error);
+      showSnackbar("Failed to delete task", "error");
     }
   };
 
@@ -349,10 +384,10 @@ const TasksPage: React.FC = () => {
                     fontWeight: 600,
                     "&:hover": {
                       bgcolor: "rgba(255,255,255,0.9)",
-                      transform: "translateY(-2px)",
+                      // transform: "translateY(-2px)",
                       boxShadow: "0 8px 16px rgba(0,0,0,0.2)",
                     },
-                    transition: "all 0.3s ease",
+                    // transition: "all 0.3s ease",
                   }}
                 >
                   Create Task
@@ -412,7 +447,7 @@ const TasksPage: React.FC = () => {
                           background: "rgba(255,255,255,0.95)",
                           backdropFilter: "blur(10px)",
                           "&:hover": {
-                            transform: "translateY(-8px)",
+                            // transform: "translateY(-8px)",
                             boxShadow: "0 12px 24px rgba(0,0,0,0.15)",
                           },
                         }}
@@ -426,25 +461,38 @@ const TasksPage: React.FC = () => {
                               mb: 2,
                             }}
                           >
-                            <IconButton
-                              size="small"
-                              onClick={() => handleToggleStatus(task)}
+                            <Box
                               sx={{
-                                color:
-                                  task.status === TaskStatus.DONE
-                                    ? "#48bb78"
-                                    : "#cbd5e0",
-                                "&:hover": {
-                                  bgcolor:
-                                    task.status === TaskStatus.DONE
-                                      ? "rgba(72, 187, 120, 0.1)"
-                                      : "rgba(102, 126, 234, 0.1)",
-                                },
-                                transition: "all 0.3s ease",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 0.5,
                               }}
                             >
-                              {getStatusIcon(task.status)}
-                            </IconButton>
+                              <Box
+                                sx={{
+                                  color:
+                                    task.status === TaskStatus.DONE
+                                      ? "#48bb78"
+                                      : task.status === TaskStatus.IN_PROGRESS
+                                        ? "#ed8936"
+                                        : "#cbd5e0",
+                                }}
+                              >
+                                {getStatusIcon(task.status)}
+                              </Box>
+                              <IconButton
+                                size="small"
+                                onClick={(e) => handleOpenStatusMenu(e, task)}
+                                sx={{
+                                  padding: "2px",
+                                  "&:hover": {
+                                    bgcolor: "rgba(102, 126, 234, 0.1)",
+                                  },
+                                }}
+                              >
+                                <MoreVertIcon fontSize="small" />
+                              </IconButton>
+                            </Box>
                             <Typography
                               variant="h6"
                               sx={{
@@ -644,6 +692,69 @@ const TasksPage: React.FC = () => {
             {snackbar.message}
           </Alert>
         </Snackbar>
+
+        {/* Status Change Menu */}
+        <Menu
+          anchorEl={statusMenuAnchor}
+          open={Boolean(statusMenuAnchor)}
+          onClose={handleCloseStatusMenu}
+          PaperProps={{
+            sx: {
+              borderRadius: 2,
+              minWidth: 200,
+              boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+            },
+          }}
+        >
+          <MenuItem
+            onClick={() => handleChangeStatus(TaskStatus.TODO)}
+            disabled={selectedTask?.status === TaskStatus.TODO}
+            sx={{
+              py: 1.5,
+              "&:hover": {
+                bgcolor: "rgba(203, 213, 224, 0.1)",
+              },
+            }}
+          >
+            <ListItemIcon>
+              <RadioButtonUncheckedIcon
+                fontSize="small"
+                sx={{ color: "#cbd5e0" }}
+              />
+            </ListItemIcon>
+            <Typography>To Do</Typography>
+          </MenuItem>
+          <MenuItem
+            onClick={() => handleChangeStatus(TaskStatus.IN_PROGRESS)}
+            disabled={selectedTask?.status === TaskStatus.IN_PROGRESS}
+            sx={{
+              py: 1.5,
+              "&:hover": {
+                bgcolor: "rgba(237, 137, 54, 0.1)",
+              },
+            }}
+          >
+            <ListItemIcon>
+              <AccessTimeIcon fontSize="small" sx={{ color: "#ed8936" }} />
+            </ListItemIcon>
+            <Typography>In Progress</Typography>
+          </MenuItem>
+          <MenuItem
+            onClick={() => handleChangeStatus(TaskStatus.DONE)}
+            disabled={selectedTask?.status === TaskStatus.DONE}
+            sx={{
+              py: 1.5,
+              "&:hover": {
+                bgcolor: "rgba(72, 187, 120, 0.1)",
+              },
+            }}
+          >
+            <ListItemIcon>
+              <CheckCircleIcon fontSize="small" sx={{ color: "#48bb78" }} />
+            </ListItemIcon>
+            <Typography>Done</Typography>
+          </MenuItem>
+        </Menu>
       </Container>
     </Box>
   );

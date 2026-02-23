@@ -160,7 +160,7 @@ const DashboardPage: React.FC = () => {
                         py: 1.5,
                         fontWeight: 600,
                         "&:hover": {
-                          transform: "translateY(-2px)",
+                          // transform: "translateY(-2px)",
                           boxShadow: "0 8px 16px rgba(102, 126, 234, 0.3)",
                         },
                         transition: "all 0.3s ease",
@@ -224,7 +224,7 @@ const DashboardPage: React.FC = () => {
                           backdropFilter: "blur(10px)",
                           transition: "all 0.3s ease",
                           "&:hover": {
-                            transform: "translateY(-8px)",
+                            // transform: "translateY(-8px)",
                             boxShadow: "0 12px 24px rgba(0,0,0,0.15)",
                           },
                         }}
