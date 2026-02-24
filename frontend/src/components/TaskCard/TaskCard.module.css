@@ -2,20 +2,20 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  border-radius: 24px !important;
-  transition: all 0.3s ease !important;
-  background: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
 }
 
 .taskCard:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .taskCardContent {
   flex-grow: 1;
-  padding-bottom: 8px !important;
+  padding-bottom: 8px;
 }
 
 .taskCardHeader {
@@ -44,17 +44,17 @@
 }
 
 .taskCardStatusButton {
-  padding: 2px !important;
+  padding: 2px;
 }
 
 .taskCardStatusButton:hover {
-  background-color: rgba(102, 126, 234, 0.1) !important;
+  background-color: rgba(102, 126, 234, 0.1);
 }
 
 .taskCardTitle {
   flex-grow: 1;
-  font-weight: 600 !important;
-  color: #2d3748 !important;
+  font-weight: 600;
+  color: #2d3748;
 }
 
 .taskCardTitleDone {
@@ -63,7 +63,7 @@
 }
 
 .taskCardDescription {
-  margin-bottom: 16px !important;
+  margin-bottom: 16px;
   min-height: 40px;
 }
 
@@ -74,18 +74,18 @@
 }
 
 .taskCardChip {
-  font-weight: 500 !important;
+  font-weight: 500;
 }
 
 .taskCardActions {
-  justify-content: flex-end !important;
-  padding: 0 16px 16px !important;
+  justify-content: flex-end;
+  padding: 0 16px 16px;
 }
 
 .taskCardEditButton:hover {
-  background-color: rgba(102, 126, 234, 0.1) !important;
+  background-color: rgba(102, 126, 234, 0.1);
 }
 
 .taskCardDeleteButton:hover {
-  background-color: rgba(244, 67, 54, 0.1) !important;
+  background-color: rgba(244, 67, 54, 0.1);
 }

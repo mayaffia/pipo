@@ -79,15 +79,15 @@
 }
 
 .loginSubmitButton {
-  padding: 12px 0 !important;
-  margin-bottom: 16px !important;
-  font-size: 1rem !important;
-  font-weight: 600 !important;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  color: white !important;
-  border-radius: 16px !important;
-  text-transform: none !important;
-  transition: all 0.3s ease !important;
+  padding: 12px 0;
+  margin-bottom: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px;
+  text-transform: none;
+  transition: all 0.3s ease;
 }
 
 .loginSubmitButton:hover {
@@ -96,7 +96,6 @@
 }
 
 .loginSubmitButton:disabled {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   opacity: 0.6;
 }
 

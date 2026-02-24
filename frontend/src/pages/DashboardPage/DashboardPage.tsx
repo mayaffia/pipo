@@ -88,7 +88,6 @@ const DashboardPage: React.FC = () => {
       <Container maxWidth="lg">
         <Fade in timeout={800}>
           <Box>
-            {/* Header Section */}
             <Paper elevation={3} className={styles.dashboardHeaderPaper}>
               <Grid container spacing={3} alignItems="center">
                 <Grid item>
@@ -134,7 +133,6 @@ const DashboardPage: React.FC = () => {
               </Grid>
             </Paper>
 
-            {/* Stats Section */}
             <Typography variant="h5" className={styles.dashboardSectionTitle}>
               Task Overview
             </Typography>
@@ -186,7 +184,6 @@ const DashboardPage: React.FC = () => {
               </Grid>
             )}
 
-            {/* Quick Actions */}
             <Fade in timeout={1200}>
               <Paper
                 elevation={3}

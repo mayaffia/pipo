@@ -1,21 +1,21 @@
 .tasksGridEmpty {
-  padding: 48px !important;
+  padding: 48px;
   text-align: center;
-  border-radius: 24px !important;
-  background: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
 }
 
 .tasksGridEmptyTitle {
-  margin-bottom: 8px !important;
+  margin-bottom: 8px;
 }
 
 .tasksGridEmptyDescription {
-  margin-bottom: 24px !important;
+  margin-bottom: 24px;
 }
 
 .tasksGridEmptyButton {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  color: white !important;
-  padding: 12px 32px !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 32px;
 }

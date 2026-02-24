@@ -1,37 +1,37 @@
 .statusMenuPaper {
-  border-radius: 16px !important;
+  border-radius: 16px;
   min-width: 200px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .statusMenuItem {
-  padding: 12px 0 !important;
+  padding: 12px 0;
 }
 
 .statusMenuItem:hover {
-  background-color: rgba(203, 213, 224, 0.1) !important;
+  background-color: rgba(203, 213, 224, 0.1);
 }
 
 .statusMenuItemTodo:hover {
-  background-color: rgba(203, 213, 224, 0.1) !important;
+  background-color: rgba(203, 213, 224, 0.1);
 }
 
 .statusMenuItemInProgress:hover {
-  background-color: rgba(237, 137, 54, 0.1) !important;
+  background-color: rgba(237, 137, 54, 0.1);
 }
 
 .statusMenuItemDone:hover {
-  background-color: rgba(72, 187, 120, 0.1) !important;
+  background-color: rgba(72, 187, 120, 0.1);
 }
 
 .statusMenuIconTodo {
-  color: #cbd5e0 !important;
+  color: #cbd5e0;
 }
 
 .statusMenuIconInProgress {
-  color: #ed8936 !important;
+  color: #ed8936;
 }
 
 .statusMenuIconDone {
-  color: #48bb78 !important;
+  color: #48bb78;
 }

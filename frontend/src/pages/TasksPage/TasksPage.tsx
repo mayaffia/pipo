@@ -22,7 +22,6 @@ const TasksPage: React.FC = () => {
   const navigate = useNavigate();
   const [filterStatus, setFilterStatus] = useState<TaskStatus | "all">("all");
 
-  // Custom hooks
   const { tasks, loading, createTask, updateTask, deleteTask, filterTasks } =
     useTasks();
   const {
@@ -34,7 +33,6 @@ const TasksPage: React.FC = () => {
   const dialog = useTaskDialog();
   const statusMenu = useStatusMenu();
 
-  // Initialize filter from URL
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const status = params.get("status");
@@ -46,12 +44,10 @@ const TasksPage: React.FC = () => {
     }
   }, []);
 
-  // Apply filter when it changes
   useEffect(() => {
     filterTasks(filterStatus);
   }, [filterStatus, filterTasks]);
 
-  // Handlers
   const handleCreateTask = async () => {
     if (!dialog.taskData.title.trim()) {
       showError("Please enter a task title");
@@ -85,13 +81,11 @@ const TasksPage: React.FC = () => {
   };
 
   const handleDeleteTask = async (id: string) => {
-    if (window.confirm("Are you sure you want to delete this task?")) {
-      const result = await deleteTask(id);
-      if (result) {
-        showSuccess("Task deleted successfully");
-      } else {
-        showError("Failed to delete task");
-      }
+    const result = await deleteTask(id);
+    if (result) {
+      showSuccess("Task deleted successfully");
+    } else {
+      showError("Failed to delete task");
     }
   };
 
