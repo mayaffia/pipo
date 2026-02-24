@@ -1,0 +1,48 @@
+.quickActionsPaper {
+  padding: 32px;
+  margin-top: 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.quickActionsTitle {
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #2d3748;
+}
+
+.quickActionButton {
+  padding: 16px 0 !important;
+  font-weight: 600 !important;
+}
+
+.quickActionAll {
+  border-color: #667eea !important;
+  color: #667eea !important;
+}
+
+.quickActionAll:hover {
+  border-color: #764ba2 !important;
+  background-color: rgba(102, 126, 234, 0.05) !important;
+}
+
+.quickActionDone {
+  border-color: #48bb78 !important;
+  color: #48bb78 !important;
+}
+
+.quickActionDone:hover {
+  border-color: #38a169 !important;
+  background-color: rgba(72, 187, 120, 0.05) !important;
+}
+
+.quickActionInProgress {
+  border-color: #ed8936 !important;
+  color: #ed8936 !important;
+}
+
+.quickActionInProgress:hover {
+  border-color: #dd6b20 !important;
+  background-color: rgba(237, 137, 54, 0.05) !important;
+}

@@ -1,0 +1,19 @@
+.statIcon {
+  font-size: 40px;
+}
+
+.sectionTitle {
+  color: white;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.loading {
+  text-align: center;
+  padding: 64px 0;
+}
+
+.loadingText {
+  color: white;
+}

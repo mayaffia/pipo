@@ -1,0 +1,31 @@
+.formBox {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.submitButton {
+  padding: 12px !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  transition: all 0.3s ease !important;
+}
+
+.submitButton:hover {
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3) !important;
+}
+
+.registerLink {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.registerLinkText {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.registerLinkText:hover {
+  text-decoration: underline;
+}

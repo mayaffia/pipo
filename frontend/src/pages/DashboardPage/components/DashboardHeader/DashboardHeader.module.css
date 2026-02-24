@@ -1,0 +1,65 @@
+.headerPaper {
+  padding: 32px;
+  margin-bottom: 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.welcomeTitle {
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.emailChip {
+  background-color: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+}
+
+.viewTasksButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.viewTasksButton:hover {
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+.logoutButton {
+  border-color: #667eea;
+  color: #667eea;
+  padding: 12px 24px;
+  font-weight: 600;
+}
+
+.logoutButton:hover {
+  border-color: #764ba2;
+  background-color: rgba(102, 126, 234, 0.05);
+}

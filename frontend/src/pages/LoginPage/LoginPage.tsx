@@ -1,25 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  Container,
-  Box,
-  TextField,
-  Button,
-  Typography,
-  Paper,
-  Alert,
-  Fade,
-  InputAdornment,
-  IconButton,
-} from "@mui/material";
-import {
-  Email as EmailIcon,
-  Lock as LockIcon,
-  Visibility,
-  VisibilityOff,
-  Login as LoginIcon,
-} from "@mui/icons-material";
+import { Container, Box, Typography, Paper, Alert, Fade } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
+import { LoginHeader, LoginForm } from "./components";
 import styles from "./LoginPage.module.css";
 
 const LoginPage: React.FC = () => {
@@ -51,21 +34,7 @@ const LoginPage: React.FC = () => {
       <Container maxWidth="sm">
         <Fade in timeout={800}>
           <Paper elevation={10} className={styles.loginPaper}>
-            <Box className={styles.loginHeader}>
-              <Box className={styles.loginIconWrapper}>
-                <LoginIcon className={styles.loginIcon} />
-              </Box>
-              <Typography
-                component="h1"
-                variant="h4"
-                className={styles.loginTitle}
-              >
-                Welcome Back
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                Sign in to continue to your account
-              </Typography>
-            </Box>
+            <LoginHeader />
 
             {error && (
               <Fade in>
@@ -75,73 +44,23 @@ const LoginPage: React.FC = () => {
               </Fade>
             )}
 
-            <Box component="form" onSubmit={handleSubmit}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={styles.loginField}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <EmailIcon className={styles.loginFieldIcon} />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                id="password"
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={styles.loginPasswordField}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <LockIcon className={styles.loginFieldIcon} />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                disabled={loading}
-                className={styles.loginSubmitButton}
-              >
-                {loading ? "Signing In..." : "Sign In"}
-              </Button>
-              <Box className={styles.loginFooter}>
-                <Link to="/register" className={styles.loginLinkWrapper}>
-                  <Typography variant="body2" className={styles.loginLink}>
-                    Don't have an account? Sign Up
-                  </Typography>
-                </Link>
-              </Box>
+            <LoginForm
+              email={email}
+              password={password}
+              showPassword={showPassword}
+              loading={loading}
+              onEmailChange={setEmail}
+              onPasswordChange={setPassword}
+              onTogglePassword={() => setShowPassword(!showPassword)}
+              onSubmit={handleSubmit}
+            />
+
+            <Box className={styles.loginFooter}>
+              <Link to="/register" className={styles.loginLinkWrapper}>
+                <Typography variant="body2" className={styles.loginLink}>
+                  Don't have an account? Sign Up
+                </Typography>
+              </Link>
             </Box>
           </Paper>
         </Fade>
