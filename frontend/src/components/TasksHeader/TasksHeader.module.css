@@ -1,0 +1,62 @@
+.tasksHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tasksHeaderTitle {
+  color: white !important;
+  font-weight: 700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tasksHeaderFilter {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.tasksHeaderFilterChip {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+}
+
+.tasksHeaderFilterChip :global(.MuiChip-deleteIcon) {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.tasksHeaderFilterChip :global(.MuiChip-deleteIcon:hover) {
+  color: white;
+}
+
+.tasksHeaderActions {
+  display: flex;
+  gap: 16px;
+}
+
+.tasksHeaderDashboardButton {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+  color: white !important;
+}
+
+.tasksHeaderDashboardButton:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.tasksHeaderCreateButton {
+  background-color: white !important;
+  color: #667eea !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.tasksHeaderCreateButton:hover {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+}

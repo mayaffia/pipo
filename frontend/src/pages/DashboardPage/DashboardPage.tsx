@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { apiService } from "../../services/api";
 import { TaskStats } from "../../types";
-import "./DashboardPage.css";
+import styles from "./DashboardPage.module.css";
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -56,65 +56,68 @@ const DashboardPage: React.FC = () => {
     {
       title: "Total Tasks",
       value: stats?.total || 0,
-      icon: <AssignmentIcon style={{ fontSize: 40 }} />,
+      icon: <AssignmentIcon className={styles.dashboardStatIcon} />,
       color: "#667eea",
       bgGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     },
     {
       title: "Completed",
       value: stats?.byStatus?.done || 0,
-      icon: <CheckCircleIcon style={{ fontSize: 40 }} />,
+      icon: <CheckCircleIcon className={styles.dashboardStatIcon} />,
       color: "#48bb78",
       bgGradient: "linear-gradient(135deg, #48bb78 0%, #38a169 100%)",
     },
     {
       title: "In Progress",
       value: stats?.byStatus?.in_progress || 0,
-      icon: <AccessTimeIcon style={{ fontSize: 40 }} />,
+      icon: <AccessTimeIcon className={styles.dashboardStatIcon} />,
       color: "#ed8936",
       bgGradient: "linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)",
     },
     {
       title: "To Do",
       value: stats?.byStatus?.todo || 0,
-      icon: <TrendingUpIcon style={{ fontSize: 40 }} />,
+      icon: <TrendingUpIcon className={styles.dashboardStatIcon} />,
       color: "#4299e1",
       bgGradient: "linear-gradient(135deg, #4299e1 0%, #3182ce 100%)",
     },
   ];
 
   return (
-    <Box className="dashboard-page">
+    <Box className={styles.dashboardPage}>
       <Container maxWidth="lg">
         <Fade in timeout={800}>
           <Box>
             {/* Header Section */}
-            <Paper elevation={3} className="dashboard-header-paper">
+            <Paper elevation={3} className={styles.dashboardHeaderPaper}>
               <Grid container spacing={3} alignItems="center">
                 <Grid item>
-                  <Avatar className="dashboard-avatar">
+                  <Avatar className={styles.dashboardAvatar}>
                     {user?.firstName?.[0]}
                     {user?.lastName?.[0]}
                   </Avatar>
                 </Grid>
                 <Grid item xs>
-                  <Typography variant="h3" className="dashboard-welcome-title">
+                  <Typography
+                    variant="h3"
+                    className={styles.dashboardWelcomeTitle}
+                  >
                     Welcome back, {user?.firstName}!
                   </Typography>
-                  <Box className="dashboard-user-info">
+                  <Box className={styles.dashboardUserInfo}>
                     <Chip
                       icon={<PersonIcon />}
                       label={user?.email}
-                      className="dashboard-email-chip"
+                      className={styles.dashboardEmailChip}
                     />
                   </Box>
                 </Grid>
                 <Grid item>
-                  <Box className="dashboard-actions">
+                  <Box className={styles.dashboardActions}>
                     <Button
                       variant="contained"
                       onClick={() => navigate("/tasks")}
-                      className="dashboard-view-tasks-button"
+                      className={styles.dashboardViewTasksButton}
                     >
                       View Tasks
                     </Button>
@@ -122,7 +125,7 @@ const DashboardPage: React.FC = () => {
                       variant="outlined"
                       startIcon={<ExitToAppIcon />}
                       onClick={handleLogout}
-                      className="dashboard-logout-button"
+                      className={styles.dashboardLogoutButton}
                     >
                       Logout
                     </Button>
@@ -132,13 +135,16 @@ const DashboardPage: React.FC = () => {
             </Paper>
 
             {/* Stats Section */}
-            <Typography variant="h5" className="dashboard-section-title">
+            <Typography variant="h5" className={styles.dashboardSectionTitle}>
               Task Overview
             </Typography>
 
             {loading ? (
-              <Box className="dashboard-loading">
-                <Typography variant="h6" style={{ color: "white" }}>
+              <Box className={styles.dashboardLoading}>
+                <Typography
+                  variant="h6"
+                  className={styles.dashboardLoadingText}
+                >
                   Loading statistics...
                 </Typography>
               </Box>
@@ -147,11 +153,13 @@ const DashboardPage: React.FC = () => {
                 {statCards.map((stat, index) => (
                   <Grid item xs={12} sm={6} md={3} key={stat.title}>
                     <Fade in timeout={500 + index * 100}>
-                      <Card elevation={3} className="dashboard-stat-card">
-                        <CardContent className="dashboard-stat-card-content">
-                          <Box className="dashboard-stat-icon-wrapper">
+                      <Card elevation={3} className={styles.dashboardStatCard}>
+                        <CardContent
+                          className={styles.dashboardStatCardContent}
+                        >
+                          <Box className={styles.dashboardStatIconWrapper}>
                             <Box
-                              className="dashboard-stat-icon-box"
+                              className={styles.dashboardStatIconBox}
                               style={{ background: stat.bgGradient }}
                             >
                               {stat.icon}
@@ -159,14 +167,14 @@ const DashboardPage: React.FC = () => {
                           </Box>
                           <Typography
                             variant="h3"
-                            className="dashboard-stat-value"
+                            className={styles.dashboardStatValue}
                             style={{ color: stat.color }}
                           >
                             {stat.value}
                           </Typography>
                           <Typography
                             variant="body1"
-                            className="dashboard-stat-title"
+                            className={styles.dashboardStatTitle}
                           >
                             {stat.title}
                           </Typography>
@@ -180,10 +188,13 @@ const DashboardPage: React.FC = () => {
 
             {/* Quick Actions */}
             <Fade in timeout={1200}>
-              <Paper elevation={3} className="dashboard-quick-actions-paper">
+              <Paper
+                elevation={3}
+                className={styles.dashboardQuickActionsPaper}
+              >
                 <Typography
                   variant="h5"
-                  className="dashboard-quick-actions-title"
+                  className={styles.dashboardQuickActionsTitle}
                 >
                   Quick Actions
                 </Typography>
@@ -193,7 +204,7 @@ const DashboardPage: React.FC = () => {
                       fullWidth
                       variant="outlined"
                       onClick={() => navigate("/tasks")}
-                      className="dashboard-quick-action-button dashboard-quick-action-all"
+                      className={`${styles.dashboardQuickActionButton} ${styles.dashboardQuickActionAll}`}
                     >
                       Manage All Tasks
                     </Button>
@@ -203,7 +214,7 @@ const DashboardPage: React.FC = () => {
                       fullWidth
                       variant="outlined"
                       onClick={() => navigate("/tasks?status=done")}
-                      className="dashboard-quick-action-button dashboard-quick-action-done"
+                      className={`${styles.dashboardQuickActionButton} ${styles.dashboardQuickActionDone}`}
                     >
                       View Completed Tasks
                     </Button>
@@ -213,7 +224,7 @@ const DashboardPage: React.FC = () => {
                       fullWidth
                       variant="outlined"
                       onClick={() => navigate("/tasks?status=in_progress")}
-                      className="dashboard-quick-action-button dashboard-quick-action-in-progress"
+                      className={`${styles.dashboardQuickActionButton} ${styles.dashboardQuickActionInProgress}`}
                     >
                       View In Progress
                     </Button>

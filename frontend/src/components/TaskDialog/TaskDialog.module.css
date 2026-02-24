@@ -1,0 +1,34 @@
+.taskDialogPaper {
+  border-radius: 24px !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(10px);
+}
+
+.taskDialogTitle {
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+}
+
+.taskDialogContent {
+  margin-top: 16px !important;
+}
+
+.taskDialogField {
+  margin-bottom: 16px !important;
+}
+
+.taskDialogActions {
+  padding: 0 24px 24px !important;
+}
+
+.taskDialogCancelButton {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.taskDialogSaveButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 0 24px !important;
+}

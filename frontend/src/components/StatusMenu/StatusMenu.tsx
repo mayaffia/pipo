@@ -6,7 +6,7 @@ import {
   AccessTime as AccessTimeIcon,
 } from "@mui/icons-material";
 import { Task, TaskStatus } from "../../types";
-import "./StatusMenu.css";
+import styles from "./StatusMenu.module.css";
 
 interface StatusMenuProps {
   anchorEl: HTMLElement | null;
@@ -27,18 +27,18 @@ export const StatusMenu: React.FC<StatusMenuProps> = ({
       open={Boolean(anchorEl)}
       onClose={onClose}
       PaperProps={{
-        className: "status-menu-paper",
+        className: styles.statusMenuPaper,
       }}
     >
       <MenuItem
         onClick={() => onChangeStatus(TaskStatus.TODO)}
         disabled={selectedTask?.status === TaskStatus.TODO}
-        className="status-menu-item status-menu-item-todo"
+        className={`${styles.statusMenuItem} ${styles.statusMenuItemTodo}`}
       >
         <ListItemIcon>
           <RadioButtonUncheckedIcon
             fontSize="small"
-            className="status-menu-icon-todo"
+            className={styles.statusMenuIconTodo}
           />
         </ListItemIcon>
         <Typography>To Do</Typography>
@@ -46,12 +46,12 @@ export const StatusMenu: React.FC<StatusMenuProps> = ({
       <MenuItem
         onClick={() => onChangeStatus(TaskStatus.IN_PROGRESS)}
         disabled={selectedTask?.status === TaskStatus.IN_PROGRESS}
-        className="status-menu-item status-menu-item-in-progress"
+        className={`${styles.statusMenuItem} ${styles.statusMenuItemInProgress}`}
       >
         <ListItemIcon>
           <AccessTimeIcon
             fontSize="small"
-            className="status-menu-icon-in-progress"
+            className={styles.statusMenuIconInProgress}
           />
         </ListItemIcon>
         <Typography>In Progress</Typography>
@@ -59,10 +59,13 @@ export const StatusMenu: React.FC<StatusMenuProps> = ({
       <MenuItem
         onClick={() => onChangeStatus(TaskStatus.DONE)}
         disabled={selectedTask?.status === TaskStatus.DONE}
-        className="status-menu-item status-menu-item-done"
+        className={`${styles.statusMenuItem} ${styles.statusMenuItemDone}`}
       >
         <ListItemIcon>
-          <CheckCircleIcon fontSize="small" className="status-menu-icon-done" />
+          <CheckCircleIcon
+            fontSize="small"
+            className={styles.statusMenuIconDone}
+          />
         </ListItemIcon>
         <Typography>Done</Typography>
       </MenuItem>

@@ -22,7 +22,7 @@ import {
   PersonAdd as PersonAddIcon,
 } from "@mui/icons-material";
 import { useAuth } from "../../context/AuthContext";
-import "./RegisterPage.modules.css";
+import styles from "./RegisterPage.module.css";
 
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
@@ -60,18 +60,18 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <Box className="register-page">
+    <Box className={styles.registerPage}>
       <Container maxWidth="sm">
         <Fade in timeout={800}>
-          <Paper elevation={10} className="register-paper">
-            <Box className="register-header">
-              <Box className="register-icon-wrapper">
-                <PersonAddIcon className="register-icon" />
+          <Paper elevation={10} className={styles.registerPaper}>
+            <Box className={styles.registerHeader}>
+              <Box className={styles.registerIconWrapper}>
+                <PersonAddIcon className={styles.registerIcon} />
               </Box>
               <Typography
                 component="h1"
                 variant="h4"
-                className="register-title"
+                className={styles.registerTitle}
               >
                 Create Account
               </Typography>
@@ -82,7 +82,7 @@ const RegisterPage: React.FC = () => {
 
             {error && (
               <Fade in>
-                <Alert severity="error" className="register-alert">
+                <Alert severity="error" className={styles.registerAlert}>
                   {error}
                 </Alert>
               </Fade>
@@ -101,11 +101,11 @@ const RegisterPage: React.FC = () => {
                     autoFocus
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="register-field"
+                    className={styles.registerField}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <PersonIcon className="register-field-icon" />
+                          <PersonIcon className={styles.registerFieldIcon} />
                         </InputAdornment>
                       ),
                     }}
@@ -121,11 +121,11 @@ const RegisterPage: React.FC = () => {
                     autoComplete="family-name"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="register-field"
+                    className={styles.registerField}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <PersonIcon className="register-field-icon" />
+                          <PersonIcon className={styles.registerFieldIcon} />
                         </InputAdornment>
                       ),
                     }}
@@ -141,11 +141,11 @@ const RegisterPage: React.FC = () => {
                     autoComplete="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="register-field"
+                    className={styles.registerField}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <EmailIcon className="register-field-icon" />
+                          <EmailIcon className={styles.registerFieldIcon} />
                         </InputAdornment>
                       ),
                     }}
@@ -162,11 +162,11 @@ const RegisterPage: React.FC = () => {
                     autoComplete="new-password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="register-field"
+                    className={styles.registerField}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
-                          <LockIcon className="register-field-icon" />
+                          <LockIcon className={styles.registerFieldIcon} />
                         </InputAdornment>
                       ),
                       endAdornment: (
@@ -188,13 +188,13 @@ const RegisterPage: React.FC = () => {
                 fullWidth
                 variant="contained"
                 disabled={loading}
-                className="register-submit-button"
+                className={styles.registerSubmitButton}
               >
                 {loading ? "Creating Account..." : "Sign Up"}
               </Button>
-              <Box className="register-footer">
-                <Link to="/login" style={{ textDecoration: "none" }}>
-                  <Typography variant="body2" className="register-link">
+              <Box className={styles.registerFooter}>
+                <Link to="/login" className={styles.registerLinkWrapper}>
+                  <Typography variant="body2" className={styles.registerLink}>
                     Already have an account? Sign In
                   </Typography>
                 </Link>

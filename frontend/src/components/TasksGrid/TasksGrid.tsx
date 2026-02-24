@@ -3,7 +3,7 @@ import { Grid, Paper, Typography, Button, Fade } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";
 import { Task } from "../../types";
 import { TaskCard } from "../TaskCard/TaskCard";
-import "./TasksGrid.css";
+import styles from "./TasksGrid.module.css";
 
 interface TasksGridProps {
   tasks: Task[];
@@ -23,18 +23,18 @@ export const TasksGrid: React.FC<TasksGridProps> = ({
   if (tasks.length === 0) {
     return (
       <Fade in timeout={1000}>
-        <Paper elevation={3} className="tasks-grid-empty">
+        <Paper elevation={3} className={styles.tasksGridEmpty}>
           <Typography
             variant="h5"
             color="text.secondary"
             gutterBottom
-            className="tasks-grid-empty-title"
+            className={styles.tasksGridEmptyTitle}
           >
             No tasks yet
           </Typography>
           <Typography
             color="text.secondary"
-            className="tasks-grid-empty-description"
+            className={styles.tasksGridEmptyDescription}
           >
             Create your first task to get started!
           </Typography>
@@ -43,7 +43,7 @@ export const TasksGrid: React.FC<TasksGridProps> = ({
             startIcon={<AddIcon />}
             onClick={onCreateTask}
             size="large"
-            className="tasks-grid-empty-button"
+            className={styles.tasksGridEmptyButton}
           >
             Create Your First Task
           </Button>

@@ -9,7 +9,7 @@ import {
   Button,
 } from "@mui/material";
 import { TaskStatus, TaskPriority, CreateTaskRequest } from "../../types";
-import "./TaskDialog.css";
+import styles from "./TaskDialog.module.css";
 
 interface TaskDialogProps {
   open: boolean;
@@ -35,13 +35,13 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
       maxWidth="sm"
       fullWidth
       PaperProps={{
-        className: "task-dialog-paper",
+        className: styles.taskDialogPaper,
       }}
     >
-      <DialogTitle className="task-dialog-title">
+      <DialogTitle className={styles.taskDialogTitle}>
         {isEditing ? "Edit Task" : "Create New Task"}
       </DialogTitle>
-      <DialogContent className="task-dialog-content">
+      <DialogContent className={styles.taskDialogContent}>
         <TextField
           autoFocus
           margin="dense"
@@ -50,7 +50,7 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
           required
           value={task.title}
           onChange={(e) => onChange({ ...task, title: e.target.value })}
-          className="task-dialog-field"
+          className={styles.taskDialogField}
         />
         <TextField
           margin="dense"
@@ -60,7 +60,7 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
           rows={3}
           value={task.description}
           onChange={(e) => onChange({ ...task, description: e.target.value })}
-          className="task-dialog-field"
+          className={styles.taskDialogField}
         />
         <TextField
           select
@@ -71,7 +71,7 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
           onChange={(e) =>
             onChange({ ...task, status: e.target.value as TaskStatus })
           }
-          className="task-dialog-field"
+          className={styles.taskDialogField}
         >
           <MenuItem value={TaskStatus.TODO}>To Do</MenuItem>
           <MenuItem value={TaskStatus.IN_PROGRESS}>In Progress</MenuItem>
@@ -92,14 +92,14 @@ export const TaskDialog: React.FC<TaskDialogProps> = ({
           <MenuItem value={TaskPriority.HIGH}>High</MenuItem>
         </TextField>
       </DialogContent>
-      <DialogActions className="task-dialog-actions">
-        <Button onClick={onClose} className="task-dialog-cancel-button">
+      <DialogActions className={styles.taskDialogActions}>
+        <Button onClick={onClose} className={styles.taskDialogCancelButton}>
           Cancel
         </Button>
         <Button
           onClick={onSave}
           variant="contained"
-          className="task-dialog-save-button"
+          className={styles.taskDialogSaveButton}
         >
           {isEditing ? "Update" : "Create"}
         </Button>

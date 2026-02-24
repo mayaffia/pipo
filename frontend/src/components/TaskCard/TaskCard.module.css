@@ -1,0 +1,91 @@
+.taskCard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px !important;
+  transition: all 0.3s ease !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
+.taskCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+.taskCardContent {
+  flex-grow: 1;
+  padding-bottom: 8px !important;
+}
+
+.taskCardHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.taskCardStatusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.taskCardStatusIconTodo {
+  color: #cbd5e0;
+}
+
+.taskCardStatusIconInProgress {
+  color: #ed8936;
+}
+
+.taskCardStatusIconDone {
+  color: #48bb78;
+}
+
+.taskCardStatusButton {
+  padding: 2px !important;
+}
+
+.taskCardStatusButton:hover {
+  background-color: rgba(102, 126, 234, 0.1) !important;
+}
+
+.taskCardTitle {
+  flex-grow: 1;
+  font-weight: 600 !important;
+  color: #2d3748 !important;
+}
+
+.taskCardTitleDone {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.taskCardDescription {
+  margin-bottom: 16px !important;
+  min-height: 40px;
+}
+
+.taskCardChips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.taskCardChip {
+  font-weight: 500 !important;
+}
+
+.taskCardActions {
+  justify-content: flex-end !important;
+  padding: 0 16px 16px !important;
+}
+
+.taskCardEditButton:hover {
+  background-color: rgba(102, 126, 234, 0.1) !important;
+}
+
+.taskCardDeleteButton:hover {
+  background-color: rgba(244, 67, 54, 0.1) !important;
+}

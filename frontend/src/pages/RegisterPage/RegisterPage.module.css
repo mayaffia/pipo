@@ -1,4 +1,4 @@
-.login-page {
+.registerPage {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -7,19 +7,19 @@
   padding: 32px 0;
 }
 
-.login-paper {
+.registerPaper {
   padding: 40px;
   border-radius: 32px;
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(10px);
 }
 
-.login-header {
+.registerHeader {
   text-align: center;
   margin-bottom: 32px;
 }
 
-.login-icon-wrapper {
+.registerIconWrapper {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -31,12 +31,12 @@
   box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
 }
 
-.login-icon {
+.registerIcon {
   font-size: 40px;
   color: white;
 }
 
-.login-title {
+.registerTitle {
   font-weight: 700;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   background-clip: text;
@@ -45,71 +45,60 @@
   margin-bottom: 8px;
 }
 
-.login-alert {
+.registerAlert {
   margin-bottom: 24px;
   border-radius: 16px;
 }
 
-.login-field {
-  margin-bottom: 16px;
-}
-
-.login-field .MuiOutlinedInput-root:hover fieldset {
+.registerField :global(.MuiOutlinedInput-root:hover fieldset) {
   border-color: #667eea;
 }
 
-.login-field .MuiOutlinedInput-root.Mui-focused fieldset {
+.registerField :global(.MuiOutlinedInput-root.Mui-focused fieldset) {
   border-color: #667eea;
 }
 
-.login-field-icon {
+.registerFieldIcon {
   color: #667eea;
 }
 
-.login-password-field {
-  margin-bottom: 24px;
+.registerSubmitButton {
+  margin-top: 24px !important;
+  margin-bottom: 16px !important;
+  padding: 12px 0 !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  border-radius: 16px !important;
+  text-transform: none !important;
+  transition: all 0.3s ease !important;
 }
 
-.login-password-field .MuiOutlinedInput-root:hover fieldset {
-  border-color: #667eea;
-}
-
-.login-password-field .MuiOutlinedInput-root.Mui-focused fieldset {
-  border-color: #667eea;
-}
-
-.login-submit-button {
-  padding: 12px 0;
-  margin-bottom: 16px;
-  font-size: 1rem;
-  font-weight: 600;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border-radius: 16px;
-  text-transform: none;
-  transition: all 0.3s ease;
-}
-
-.login-submit-button:hover {
+.registerSubmitButton:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
 }
 
-.login-submit-button:disabled {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.registerSubmitButton:disabled {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   opacity: 0.6;
 }
 
-.login-footer {
+.registerFooter {
   text-align: center;
   margin-top: 24px;
 }
 
-.login-link {
+.registerLink {
   color: #667eea;
   font-weight: 500;
 }
 
-.login-link:hover {
+.registerLink:hover {
   text-decoration: underline;
+}
+
+.registerLinkWrapper {
+  text-decoration: none;
 }

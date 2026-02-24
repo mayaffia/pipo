@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography, Button, Chip } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";
 import { TaskStatus } from "../../types";
-import "./TasksHeader.css";
+import styles from "./TasksHeader.module.css";
 
 interface TasksHeaderProps {
   filterStatus: TaskStatus | "all";
@@ -18,26 +18,26 @@ export const TasksHeader: React.FC<TasksHeaderProps> = ({
   onCreateTask,
 }) => {
   return (
-    <Box className="tasks-header">
+    <Box className={styles.tasksHeader}>
       <Box>
-        <Typography variant="h3" className="tasks-header-title">
+        <Typography variant="h3" className={styles.tasksHeaderTitle}>
           My Tasks
         </Typography>
         {filterStatus !== "all" && (
-          <Box className="tasks-header-filter">
+          <Box className={styles.tasksHeaderFilter}>
             <Chip
               label={`Filter: ${filterStatus.replace("_", " ")}`}
               onDelete={onClearFilter}
-              className="tasks-header-filter-chip"
+              className={styles.tasksHeaderFilterChip}
             />
           </Box>
         )}
       </Box>
-      <Box className="tasks-header-actions">
+      <Box className={styles.tasksHeaderActions}>
         <Button
           variant="contained"
           onClick={onNavigateToDashboard}
-          className="tasks-header-dashboard-button"
+          className={styles.tasksHeaderDashboardButton}
         >
           Dashboard
         </Button>
@@ -45,7 +45,7 @@ export const TasksHeader: React.FC<TasksHeaderProps> = ({
           variant="contained"
           startIcon={<AddIcon />}
           onClick={onCreateTask}
-          className="tasks-header-create-button"
+          className={styles.tasksHeaderCreateButton}
         >
           Create Task
         </Button>

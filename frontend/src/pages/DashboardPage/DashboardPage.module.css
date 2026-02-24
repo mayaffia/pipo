@@ -1,10 +1,18 @@
-.dashboard-page {
+.dashboardStatIcon {
+  font-size: 40px;
+}
+
+.dashboardLoadingText {
+  color: white;
+}
+
+.dashboardPage {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 32px 0;
 }
 
-.dashboard-header-paper {
+.dashboardHeaderPaper {
   padding: 32px;
   margin-bottom: 32px;
   border-radius: 24px;
@@ -12,7 +20,7 @@
   backdrop-filter: blur(10px);
 }
 
-.dashboard-avatar {
+.dashboardAvatar {
   width: 80px;
   height: 80px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -20,7 +28,7 @@
   font-weight: 700;
 }
 
-.dashboard-welcome-title {
+.dashboardWelcomeTitle {
   font-weight: 700;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   background-clip: text;
@@ -29,24 +37,24 @@
   margin-bottom: 8px;
 }
 
-.dashboard-user-info {
+.dashboardUserInfo {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.dashboard-email-chip {
+.dashboardEmailChip {
   background-color: rgba(102, 126, 234, 0.1);
   color: #667eea;
   font-weight: 500;
 }
 
-.dashboard-actions {
+.dashboardActions {
   display: flex;
   gap: 16px;
 }
 
-.dashboard-view-tasks-button {
+.dashboardViewTasksButton {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 12px 24px;
@@ -54,35 +62,35 @@
   transition: all 0.3s ease;
 }
 
-.dashboard-view-tasks-button:hover {
+.dashboardViewTasksButton:hover {
   box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
 }
 
-.dashboard-logout-button {
+.dashboardLogoutButton {
   border-color: #667eea;
   color: #667eea;
   padding: 12px 24px;
   font-weight: 600;
 }
 
-.dashboard-logout-button:hover {
+.dashboardLogoutButton:hover {
   border-color: #764ba2;
   background-color: rgba(102, 126, 234, 0.05);
 }
 
-.dashboard-section-title {
+.dashboardSectionTitle {
   color: white;
   font-weight: 700;
   margin-bottom: 24px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.dashboard-loading {
+.dashboardLoading {
   text-align: center;
   padding: 64px 0;
 }
 
-.dashboard-stat-card {
+.dashboardStatCard {
   height: 100%;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.95);
@@ -90,22 +98,22 @@
   transition: all 0.3s ease;
 }
 
-.dashboard-stat-card:hover {
+.dashboardStatCard:hover {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-.dashboard-stat-card-content {
+.dashboardStatCardContent {
   padding: 24px;
 }
 
-.dashboard-stat-icon-wrapper {
+.dashboardStatIconWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
 }
 
-.dashboard-stat-icon-box {
+.dashboardStatIconBox {
   width: 60px;
   height: 60px;
   border-radius: 16px;
@@ -115,17 +123,17 @@
   color: white;
 }
 
-.dashboard-stat-value {
+.dashboardStatValue {
   font-weight: 700;
   margin-bottom: 8px;
 }
 
-.dashboard-stat-title {
+.dashboardStatTitle {
   color: rgba(0, 0, 0, 0.6);
   font-weight: 500;
 }
 
-.dashboard-quick-actions-paper {
+.dashboardQuickActionsPaper {
   padding: 32px;
   margin-top: 32px;
   border-radius: 24px;
@@ -133,43 +141,43 @@
   backdrop-filter: blur(10px);
 }
 
-.dashboard-quick-actions-title {
+.dashboardQuickActionsTitle {
   font-weight: 700;
   margin-bottom: 24px;
   color: #2d3748;
 }
 
-.dashboard-quick-action-button {
+.dashboardQuickActionButton {
   padding: 16px 0 !important;
   font-weight: 600 !important;
 }
 
-.dashboard-quick-action-all {
+.dashboardQuickActionAll {
   border-color: #667eea !important;
   color: #667eea !important;
 }
 
-.dashboard-quick-action-all:hover {
+.dashboardQuickActionAll:hover {
   border-color: #764ba2 !important;
   background-color: rgba(102, 126, 234, 0.05) !important;
 }
 
-.dashboard-quick-action-done {
+.dashboardQuickActionDone {
   border-color: #48bb78 !important;
   color: #48bb78 !important;
 }
 
-.dashboard-quick-action-done:hover {
+.dashboardQuickActionDone:hover {
   border-color: #38a169 !important;
   background-color: rgba(72, 187, 120, 0.05) !important;
 }
 
-.dashboard-quick-action-in-progress {
+.dashboardQuickActionInProgress {
   border-color: #ed8936 !important;
   color: #ed8936 !important;
 }
 
-.dashboard-quick-action-in-progress:hover {
+.dashboardQuickActionInProgress:hover {
   border-color: #dd6b20 !important;
   background-color: rgba(237, 137, 54, 0.05) !important;
 }

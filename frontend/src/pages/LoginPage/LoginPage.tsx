@@ -20,7 +20,7 @@ import {
   Login as LoginIcon,
 } from "@mui/icons-material";
 import { useAuth } from "../../context/AuthContext";
-import "./LoginPage.modules.css";
+import styles from "./LoginPage.module.css";
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
@@ -47,15 +47,19 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <Box className="login-page">
+    <Box className={styles.loginPage}>
       <Container maxWidth="sm">
         <Fade in timeout={800}>
-          <Paper elevation={10} className="login-paper">
-            <Box className="login-header">
-              <Box className="login-icon-wrapper">
-                <LoginIcon className="login-icon" />
+          <Paper elevation={10} className={styles.loginPaper}>
+            <Box className={styles.loginHeader}>
+              <Box className={styles.loginIconWrapper}>
+                <LoginIcon className={styles.loginIcon} />
               </Box>
-              <Typography component="h1" variant="h4" className="login-title">
+              <Typography
+                component="h1"
+                variant="h4"
+                className={styles.loginTitle}
+              >
                 Welcome Back
               </Typography>
               <Typography variant="body1" color="text.secondary">
@@ -65,7 +69,7 @@ const LoginPage: React.FC = () => {
 
             {error && (
               <Fade in>
-                <Alert severity="error" className="login-alert">
+                <Alert severity="error" className={styles.loginAlert}>
                   {error}
                 </Alert>
               </Fade>
@@ -83,11 +87,11 @@ const LoginPage: React.FC = () => {
                 autoFocus
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="login-field"
+                className={styles.loginField}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <EmailIcon className="login-field-icon" />
+                      <EmailIcon className={styles.loginFieldIcon} />
                     </InputAdornment>
                   ),
                 }}
@@ -103,11 +107,11 @@ const LoginPage: React.FC = () => {
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="login-password-field"
+                className={styles.loginPasswordField}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <LockIcon className="login-field-icon" />
+                      <LockIcon className={styles.loginFieldIcon} />
                     </InputAdornment>
                   ),
                   endAdornment: (
@@ -127,13 +131,13 @@ const LoginPage: React.FC = () => {
                 fullWidth
                 variant="contained"
                 disabled={loading}
-                className="login-submit-button"
+                className={styles.loginSubmitButton}
               >
                 {loading ? "Signing In..." : "Sign In"}
               </Button>
-              <Box className="login-footer">
-                <Link to="/register" style={{ textDecoration: "none" }}>
-                  <Typography variant="body2" className="login-link">
+              <Box className={styles.loginFooter}>
+                <Link to="/register" className={styles.loginLinkWrapper}>
+                  <Typography variant="body2" className={styles.loginLink}>
                     Don't have an account? Sign Up
                   </Typography>
                 </Link>

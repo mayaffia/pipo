@@ -18,7 +18,7 @@ import {
   MoreVert as MoreVertIcon,
 } from "@mui/icons-material";
 import { Task, TaskStatus, TaskPriority } from "../../types";
-import "./TaskCard.css";
+import styles from "./TaskCard.module.css";
 
 interface TaskCardProps {
   task: Task;
@@ -74,26 +74,32 @@ export const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   return (
     <Fade in timeout={500 + index * 100}>
-      <Card elevation={3} className="task-card">
-        <CardContent className="task-card-content">
-          <Box className="task-card-header">
-            <Box className="task-card-status-wrapper">
+      <Card elevation={3} className={styles.taskCard}>
+        <CardContent className={styles.taskCardContent}>
+          <Box className={styles.taskCardHeader}>
+            <Box className={styles.taskCardStatusWrapper}>
               <Box
-                className={`task-card-status-icon-${task.status === TaskStatus.DONE ? "done" : task.status === TaskStatus.IN_PROGRESS ? "in-progress" : "todo"}`}
+                className={
+                  task.status === TaskStatus.DONE
+                    ? styles.taskCardStatusIconDone
+                    : task.status === TaskStatus.IN_PROGRESS
+                      ? styles.taskCardStatusIconInProgress
+                      : styles.taskCardStatusIconTodo
+                }
               >
                 {getStatusIcon(task.status)}
               </Box>
               <IconButton
                 size="small"
                 onClick={(e) => onOpenStatusMenu(e, task)}
-                className="task-card-status-button"
+                className={styles.taskCardStatusButton}
               >
                 <MoreVertIcon fontSize="small" />
               </IconButton>
             </Box>
             <Typography
               variant="h6"
-              className={`task-card-title ${task.status === TaskStatus.DONE ? "task-card-title-done" : ""}`}
+              className={`${styles.taskCardTitle} ${task.status === TaskStatus.DONE ? styles.taskCardTitleDone : ""}`}
             >
               {task.title}
             </Typography>
@@ -102,33 +108,33 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           <Typography
             variant="body2"
             color="text.secondary"
-            className="task-card-description"
+            className={styles.taskCardDescription}
           >
             {task.description || "No description"}
           </Typography>
 
-          <Box className="task-card-chips">
+          <Box className={styles.taskCardChips}>
             <Chip
               label={task.status.replace("_", " ")}
               color={getStatusColor(task.status)}
               size="small"
-              className="task-card-chip"
+              className={styles.taskCardChip}
             />
             <Chip
               label={task.priority}
               color={getPriorityColor(task.priority)}
               size="small"
-              className="task-card-chip"
+              className={styles.taskCardChip}
             />
           </Box>
         </CardContent>
 
-        <CardActions className="task-card-actions">
+        <CardActions className={styles.taskCardActions}>
           <IconButton
             size="small"
             color="primary"
             onClick={() => onEdit(task)}
-            className="task-card-edit-button"
+            className={styles.taskCardEditButton}
           >
             <EditIcon fontSize="small" />
           </IconButton>
@@ -136,7 +142,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             size="small"
             color="error"
             onClick={() => onDelete(task.id)}
-            className="task-card-delete-button"
+            className={styles.taskCardDeleteButton}
           >
             <DeleteIcon fontSize="small" />
           </IconButton>

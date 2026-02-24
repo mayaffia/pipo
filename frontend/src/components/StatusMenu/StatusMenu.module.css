@@ -1,0 +1,37 @@
+.statusMenuPaper {
+  border-radius: 16px !important;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.statusMenuItem {
+  padding: 12px 0 !important;
+}
+
+.statusMenuItem:hover {
+  background-color: rgba(203, 213, 224, 0.1) !important;
+}
+
+.statusMenuItemTodo:hover {
+  background-color: rgba(203, 213, 224, 0.1) !important;
+}
+
+.statusMenuItemInProgress:hover {
+  background-color: rgba(237, 137, 54, 0.1) !important;
+}
+
+.statusMenuItemDone:hover {
+  background-color: rgba(72, 187, 120, 0.1) !important;
+}
+
+.statusMenuIconTodo {
+  color: #cbd5e0 !important;
+}
+
+.statusMenuIconInProgress {
+  color: #ed8936 !important;
+}
+
+.statusMenuIconDone {
+  color: #48bb78 !important;
+}

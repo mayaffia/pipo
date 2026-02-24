@@ -16,7 +16,7 @@ import {
   useTaskDialog,
   useStatusMenu,
 } from "../../hooks";
-import "./TasksPage.modules.css";
+import styles from "./TasksPage.module.css";
 
 const TasksPage: React.FC = () => {
   const navigate = useNavigate();
@@ -124,7 +124,7 @@ const TasksPage: React.FC = () => {
   }
 
   return (
-    <Box className="tasks-page">
+    <Box className={styles.tasksPage}>
       <Container maxWidth="lg">
         <Fade in timeout={800}>
           <Box>
