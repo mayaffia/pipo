@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Container, Box, Typography, Paper, Alert, Fade } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Container, Box, Paper, Alert, Fade } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
 import { RegisterHeader, RegisterForm } from "./components";
+import {
+  validateEmail,
+  validatePassword,
+  validateName,
+} from "../../utils/validation";
 import styles from "./RegisterPage.module.css";
 
 const RegisterPage: React.FC = () => {
@@ -17,17 +22,69 @@ const RegisterPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+
+    if (fieldErrors[name as keyof typeof fieldErrors]) {
+      setFieldErrors({
+        ...fieldErrors,
+        [name]: "",
+      });
+    }
+  };
+
+  const validateForm = (): boolean => {
+    const errors = {
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+    };
+
+    const emailValidation = validateEmail(formData.email);
+    if (!emailValidation.isValid) {
+      errors.email = emailValidation.error || "";
+    }
+
+    const passwordValidation = validatePassword(formData.password);
+    if (!passwordValidation.isValid) {
+      errors.password = passwordValidation.error || "";
+    }
+
+    const firstNameValidation = validateName(formData.firstName, "First name");
+    if (!firstNameValidation.isValid) {
+      errors.firstName = firstNameValidation.error || "";
+    }
+
+    const lastNameValidation = validateName(formData.lastName, "Last name");
+    if (!lastNameValidation.isValid) {
+      errors.lastName = lastNameValidation.error || "";
+    }
+
+    setFieldErrors(errors);
+
+    return !Object.values(errors).some((error) => error !== "");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    if (!validateForm()) {
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -59,18 +116,11 @@ const RegisterPage: React.FC = () => {
               formData={formData}
               showPassword={showPassword}
               loading={loading}
+              fieldErrors={fieldErrors}
               onChange={handleChange}
               onTogglePassword={() => setShowPassword(!showPassword)}
               onSubmit={handleSubmit}
             />
-
-            <Box className={styles.registerFooter}>
-              <Link to="/login" className={styles.registerLinkWrapper}>
-                <Typography variant="body2" className={styles.registerLink}>
-                  Already have an account? Sign In
-                </Typography>
-              </Link>
-            </Box>
           </Paper>
         </Fade>
       </Container>

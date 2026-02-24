@@ -16,11 +16,17 @@ import {
 import { Link } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 
+interface FieldErrors {
+  email: string;
+  password: string;
+}
+
 interface LoginFormProps {
   email: string;
   password: string;
   showPassword: boolean;
   loading: boolean;
+  fieldErrors: FieldErrors;
   onEmailChange: (email: string) => void;
   onPasswordChange: (password: string) => void;
   onTogglePassword: () => void;
@@ -32,6 +38,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   password,
   showPassword,
   loading,
+  fieldErrors,
   onEmailChange,
   onPasswordChange,
   onTogglePassword,
@@ -51,6 +58,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           autoFocus
           value={email}
           onChange={(e) => onEmailChange(e.target.value)}
+          error={!!fieldErrors.email}
+          helperText={fieldErrors.email}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -70,6 +79,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           autoComplete="current-password"
           value={password}
           onChange={(e) => onPasswordChange(e.target.value)}
+          error={!!fieldErrors.password}
+          helperText={fieldErrors.password}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">

@@ -25,10 +25,18 @@ interface RegisterFormData {
   lastName: string;
 }
 
+interface FieldErrors {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
+
 interface RegisterFormProps {
   formData: RegisterFormData;
   showPassword: boolean;
   loading: boolean;
+  fieldErrors: FieldErrors;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onTogglePassword: () => void;
   onSubmit: (e: React.FormEvent) => void;
@@ -38,6 +46,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   formData,
   showPassword,
   loading,
+  fieldErrors,
   onChange,
   onTogglePassword,
   onSubmit,
@@ -57,6 +66,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
               autoFocus
               value={formData.firstName}
               onChange={onChange}
+              error={!!fieldErrors.firstName}
+              helperText={fieldErrors.firstName}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -76,6 +87,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
               autoComplete="family-name"
               value={formData.lastName}
               onChange={onChange}
+              error={!!fieldErrors.lastName}
+              helperText={fieldErrors.lastName}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -95,6 +108,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
               autoComplete="email"
               value={formData.email}
               onChange={onChange}
+              error={!!fieldErrors.email}
+              helperText={fieldErrors.email}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -115,6 +130,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
               autoComplete="new-password"
               value={formData.password}
               onChange={onChange}
+              error={!!fieldErrors.password}
+              helperText={fieldErrors.password}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

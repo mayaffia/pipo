@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Container, Box, Typography, Paper, Alert, Fade } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Container, Box, Paper, Alert, Fade } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
 import { LoginHeader, LoginForm } from "./components";
+import { validateEmail } from "../../utils/validation";
 import styles from "./LoginPage.module.css";
 
 const LoginPage: React.FC = () => {
@@ -13,10 +14,57 @@ const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+    if (fieldErrors.email) {
+      setFieldErrors({ ...fieldErrors, email: "" });
+    }
+  };
+
+  const handlePasswordChange = (value: string) => {
+    setPassword(value);
+    if (fieldErrors.password) {
+      setFieldErrors({ ...fieldErrors, password: "" });
+    }
+  };
+
+  const validateForm = (): boolean => {
+    const errors = {
+      email: "",
+      password: "",
+    };
+
+    // Validate email
+    const emailValidation = validateEmail(email);
+    if (!emailValidation.isValid) {
+      errors.email = emailValidation.error || "";
+    }
+
+    // Validate password
+    if (!password) {
+      errors.password = "Password is required";
+    }
+
+    setFieldErrors(errors);
+
+    // Return true if no errors
+    return !Object.values(errors).some((error) => error !== "");
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    // Validate form before submission
+    if (!validateForm()) {
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -49,19 +97,12 @@ const LoginPage: React.FC = () => {
               password={password}
               showPassword={showPassword}
               loading={loading}
-              onEmailChange={setEmail}
-              onPasswordChange={setPassword}
+              fieldErrors={fieldErrors}
+              onEmailChange={handleEmailChange}
+              onPasswordChange={handlePasswordChange}
               onTogglePassword={() => setShowPassword(!showPassword)}
               onSubmit={handleSubmit}
             />
-
-            <Box className={styles.loginFooter}>
-              <Link to="/register" className={styles.loginLinkWrapper}>
-                <Typography variant="body2" className={styles.loginLink}>
-                  Don't have an account? Sign Up
-                </Typography>
-              </Link>
-            </Box>
           </Paper>
         </Fade>
       </Container>
