@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Box, Fade } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 import { apiService } from "../../services/api";
 import { TaskStats } from "../../types";
 import { DashboardHeader, StatsOverview, QuickActions } from "./components";
@@ -21,8 +21,6 @@ const DashboardPage: React.FC = () => {
     try {
       const data = await apiService.getTaskStats();
       setStats(data);
-    } catch (error) {
-      console.error("Failed to load stats:", error);
     } finally {
       setLoading(false);
     }

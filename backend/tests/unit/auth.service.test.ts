@@ -9,7 +9,11 @@ jest.mock('jsonwebtoken');
 
 describe('AuthService', () => {
   let authService: AuthService;
-  let mockUserRepository: any;
+  let mockUserRepository: {
+    findOne: jest.Mock;
+    create: jest.Mock;
+    save: jest.Mock;
+  };
 
   beforeEach(() => {
     mockUserRepository = {

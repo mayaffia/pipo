@@ -49,6 +49,7 @@ export const register = async (req: Request, res: Response) => {
 
     const { user, token } = await authService.register(email, password, firstName, lastName);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = user;
 
     return res.status(201).json({
@@ -100,6 +101,7 @@ export const login = async (req: Request, res: Response) => {
 
     const { user, token } = await authService.login(email, password);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = user;
 
     return res.json({
@@ -141,6 +143,7 @@ export const getCurrentUser = async (req: AuthRequest, res: Response) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = user;
 
     return res.json(userWithoutPassword);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Box, Paper, Alert, Fade } from "@mui/material";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/useAuth";
 import { RegisterHeader, RegisterForm } from "./components";
 import {
   validateEmail,

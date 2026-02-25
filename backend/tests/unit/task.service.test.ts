@@ -6,7 +6,15 @@ jest.mock('../../src/config/database');
 
 describe('TaskService', () => {
   let taskService: TaskService;
-  let mockTaskRepository: any;
+  let mockTaskRepository: {
+    find: jest.Mock;
+    findOne: jest.Mock;
+    create: jest.Mock;
+    save: jest.Mock;
+    remove: jest.Mock;
+    delete: jest.Mock;
+    createQueryBuilder: jest.Mock;
+  };
 
   beforeEach(() => {
     mockTaskRepository = {

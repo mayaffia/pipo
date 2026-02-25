@@ -16,7 +16,6 @@ export const useTasks = () => {
       setTasks(data);
       setError(null);
     } catch (err) {
-      console.error("Failed to load tasks:", err);
       setError("Failed to load tasks");
     } finally {
       setLoading(false);
@@ -33,7 +32,6 @@ export const useTasks = () => {
       setAllTasks([createdTask, ...allTasks]);
       return createdTask;
     } catch (err) {
-      console.error("Failed to create task:", err);
       setError("Failed to create task");
       return null;
     }
@@ -45,7 +43,6 @@ export const useTasks = () => {
       setAllTasks(allTasks.map((task) => (task.id === id ? updatedTask : task)));
       return updatedTask;
     } catch (err) {
-      console.error("Failed to update task:", err);
       setError("Failed to update task");
       return null;
     }
@@ -57,7 +54,6 @@ export const useTasks = () => {
       setAllTasks(allTasks.filter((task) => task.id !== id));
       return true;
     } catch (err) {
-      console.error("Failed to delete task:", err);
       setError("Failed to delete task");
       return false;
     }
