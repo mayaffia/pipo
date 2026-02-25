@@ -4,6 +4,9 @@ export class InitialMigration1700000000000 implements MigrationInterface {
   name = 'InitialMigration1700000000000';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
+    // Включение расширения uuid-ossp для генерации UUID
+    await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
+
     // Создание таблицы users
     await queryRunner.query(`
       CREATE TABLE "users" (
