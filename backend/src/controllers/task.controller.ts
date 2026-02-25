@@ -213,13 +213,13 @@ export const updateTask = async (req: AuthRequest, res: Response) => {
     const { id } = req.params;
     const { title, description, status, priority, dueDate } = req.body;
 
-    const updateData: UpdateTaskDto = {
-      title,
-      description,
-      status: status as TaskStatus,
-      priority: priority as TaskPriority,
-      dueDate: dueDate ? new Date(dueDate) : undefined,
-    };
+    const updateData: UpdateTaskDto = {};
+    
+    if (title !== undefined) updateData.title = title;
+    if (description !== undefined) updateData.description = description;
+    if (status !== undefined) updateData.status = status as TaskStatus;
+    if (priority !== undefined) updateData.priority = priority as TaskPriority;
+    if (dueDate !== undefined) updateData.dueDate = new Date(dueDate);
 
     const task = await taskService.updateTask(id, req.user.id, updateData);
 
