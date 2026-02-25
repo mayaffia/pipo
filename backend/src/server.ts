@@ -9,6 +9,10 @@ const startServer = async () => {
     await AppDataSource.initialize();
     logger.info('Database connection established');
 
+    // Запуск миграций
+    await AppDataSource.runMigrations();
+    logger.info('Migrations completed');
+
     // Запуск сервера
     const server = app.listen(config.server.port, () => {
       logger.info(`Server is running on port ${config.server.port}`);

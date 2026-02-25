@@ -13,6 +13,6 @@ export const AppDataSource = new DataSource({
   synchronize: false, // Используем миграции вместо автосинхронизации
   logging: config.server.nodeEnv === 'development',
   entities: [User, Task],
-  migrations: ['src/migrations/**/*.ts'],
+  migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],
   subscribers: [],
 });

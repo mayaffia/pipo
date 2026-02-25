@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { Login as LoginIcon } from "@mui/icons-material";
 import styles from "./LoginHeader.module.css";
 
 export const LoginHeader: React.FC = () => {

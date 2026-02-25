@@ -48,7 +48,6 @@ services:
       - task-network
     command: >
       sh -c "
-        npm run migration:run &&
         node dist/server.js
       "
 

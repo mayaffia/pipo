@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { PersonAdd as PersonAddIcon } from "@mui/icons-material";
 import styles from "./RegisterHeader.module.css";
 
 export const RegisterHeader: React.FC = () => {

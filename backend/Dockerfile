@@ -20,9 +20,15 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Установка только production зависимостей
+# Копирование package files и tsconfig
 COPY package*.json ./
-RUN npm ci --only=production
+COPY tsconfig.json ./
+
+# Установка всех зависимостей (включая typeorm для миграций)
+RUN npm ci
+
+# Копирование исходного кода (нужен для миграций)
+COPY src ./src
 
 # Копирование собранного приложения
 COPY --from=builder /app/dist ./dist
