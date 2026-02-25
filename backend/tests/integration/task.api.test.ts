@@ -8,26 +8,22 @@ describe('Task API Integration Tests', () => {
   let userId: string;
 
   beforeAll(async () => {
-    // Initialize database connection for tests
     if (!AppDataSource.isInitialized) {
       await AppDataSource.initialize();
     }
   });
 
   afterAll(async () => {
-    // Clean up database connection
     if (AppDataSource.isInitialized) {
       await AppDataSource.destroy();
     }
   });
 
   beforeEach(async () => {
-    // Clean up database before each test
     const userRepository = AppDataSource.getRepository(User);
     await userRepository.query('TRUNCATE TABLE tasks CASCADE');
     await userRepository.query('TRUNCATE TABLE users CASCADE');
 
-    // Create a test user and get auth token
     const response = await request(app).post('/api/auth/register').send({
       email: 'tasktest@example.com',
       password: 'Password123',
@@ -73,7 +69,6 @@ describe('Task API Integration Tests', () => {
 
     it('should return 400 for missing required fields', async () => {
       const taskData = {
-        // missing title
         description: 'Test Description',
       };
 
@@ -87,7 +82,6 @@ describe('Task API Integration Tests', () => {
 
   describe('GET /api/tasks', () => {
     beforeEach(async () => {
-      // Create some test tasks
       await request(app)
         .post('/api/tasks')
         .set('Authorization', `Bearer ${authToken}`)
@@ -130,7 +124,6 @@ describe('Task API Integration Tests', () => {
     let taskId: string;
 
     beforeEach(async () => {
-      // Create a test task
       const response = await request(app)
         .post('/api/tasks')
         .set('Authorization', `Bearer ${authToken}`)
@@ -172,7 +165,6 @@ describe('Task API Integration Tests', () => {
     let taskId: string;
 
     beforeEach(async () => {
-      // Create a test task
       const response = await request(app)
         .post('/api/tasks')
         .set('Authorization', `Bearer ${authToken}`)
@@ -227,7 +219,6 @@ describe('Task API Integration Tests', () => {
     let taskId: string;
 
     beforeEach(async () => {
-      // Create a test task
       const response = await request(app)
         .post('/api/tasks')
         .set('Authorization', `Bearer ${authToken}`)
@@ -247,7 +238,6 @@ describe('Task API Integration Tests', () => {
         .set('Authorization', `Bearer ${authToken}`)
         .expect(204);
 
-      // Verify task is deleted
       await request(app)
         .get(`/api/tasks/${taskId}`)
         .set('Authorization', `Bearer ${authToken}`)
@@ -273,7 +263,6 @@ describe('Task API Integration Tests', () => {
     let user1TaskId: string;
 
     beforeEach(async () => {
-      // Create second user
       const user2Response = await request(app).post('/api/auth/register').send({
         email: 'user2@example.com',
         password: 'Password123',
@@ -283,7 +272,6 @@ describe('Task API Integration Tests', () => {
 
       user2Token = user2Response.body.token;
 
-      // Create task for user 1
       const taskResponse = await request(app)
         .post('/api/tasks')
         .set('Authorization', `Bearer ${authToken}`)

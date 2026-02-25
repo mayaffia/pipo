@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
   username: config.database.username,
   password: config.database.password,
   database: config.database.database,
-  synchronize: false, // Используем миграции вместо автосинхронизации
+  synchronize: false,
   logging: config.server.nodeEnv === 'development',
   entities: [User, Task],
   migrations: [__dirname + '/../migrations/**/*{.ts,.js}'],

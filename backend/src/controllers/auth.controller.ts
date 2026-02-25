@@ -49,7 +49,6 @@ export const register = async (req: Request, res: Response) => {
 
     const { user, token } = await authService.register(email, password, firstName, lastName);
 
-    // Не возвращаем пароль
     const { password: _, ...userWithoutPassword } = user;
 
     return res.status(201).json({
@@ -101,7 +100,6 @@ export const login = async (req: Request, res: Response) => {
 
     const { user, token } = await authService.login(email, password);
 
-    // Не возвращаем пароль
     const { password: _, ...userWithoutPassword } = user;
 
     return res.json({
@@ -143,7 +141,6 @@ export const getCurrentUser = async (req: AuthRequest, res: Response) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Не возвращаем пароль
     const { password: _, ...userWithoutPassword } = user;
 
     return res.json(userWithoutPassword);

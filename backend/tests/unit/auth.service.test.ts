@@ -3,7 +3,6 @@ import { AppDataSource } from '../../src/config/database';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-// Mock dependencies
 jest.mock('../../src/config/database');
 jest.mock('bcrypt');
 jest.mock('jsonwebtoken');
@@ -13,7 +12,6 @@ describe('AuthService', () => {
   let mockUserRepository: any;
 
   beforeEach(() => {
-    // Setup mock repository
     mockUserRepository = {
       findOne: jest.fn(),
       create: jest.fn(),

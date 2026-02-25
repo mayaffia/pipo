@@ -11,7 +11,6 @@ import { authMiddleware } from '../middleware/auth.middleware';
 
 const router = Router();
 
-// Все роуты требуют аутентификации
 router.use(authMiddleware);
 
 router.post('/', createTask);

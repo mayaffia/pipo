@@ -5,21 +5,18 @@ import { User } from '../../src/entities/User';
 
 describe('Auth API Integration Tests', () => {
   beforeAll(async () => {
-    // Initialize database connection for tests
     if (!AppDataSource.isInitialized) {
       await AppDataSource.initialize();
     }
   });
 
   afterAll(async () => {
-    // Clean up database connection
     if (AppDataSource.isInitialized) {
       await AppDataSource.destroy();
     }
   });
 
   beforeEach(async () => {
-    // Clean up users before each test
     const userRepository = AppDataSource.getRepository(User);
     await userRepository.query('TRUNCATE TABLE tasks CASCADE');
     await userRepository.query('TRUNCATE TABLE users CASCADE');
@@ -56,7 +53,7 @@ describe('Auth API Integration Tests', () => {
       const response = await request(app)
         .post('/api/auth/register')
         .send(userData)
-        .expect(201); // Currently not validating email format in backend
+        .expect(201); 
 
       expect(response.body).toHaveProperty('token');
     });
@@ -69,10 +66,8 @@ describe('Auth API Integration Tests', () => {
         lastName: 'User',
       };
 
-      // Register first time
       await request(app).post('/api/auth/register').send(userData).expect(201);
 
-      // Try to register again with same email
       const response = await request(app)
         .post('/api/auth/register')
         .send(userData)
@@ -84,7 +79,6 @@ describe('Auth API Integration Tests', () => {
     it('should return 400 for missing required fields', async () => {
       const userData = {
         email: 'test@example.com',
-        // missing password, firstName, lastName
       };
 
       await request(app).post('/api/auth/register').send(userData).expect(400);
@@ -93,7 +87,6 @@ describe('Auth API Integration Tests', () => {
 
   describe('POST /api/auth/login', () => {
     beforeEach(async () => {
-      // Create a test user before each login test
       await request(app).post('/api/auth/register').send({
         email: 'login@example.com',
         password: 'Password123',
@@ -155,7 +148,6 @@ describe('Auth API Integration Tests', () => {
     let authToken: string;
 
     beforeEach(async () => {
-      // Register and login to get auth token
       const response = await request(app).post('/api/auth/register').send({
         email: 'me@example.com',
         password: 'Password123',

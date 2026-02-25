@@ -15,16 +15,13 @@ export class AuthService {
     lastName: string
   ): Promise<{ user: User; token: string }> {
     try {
-      // Проверка существования пользователя
       const existingUser = await this.userRepository.findOne({ where: { email } });
       if (existingUser) {
         throw new Error('User already exists');
       }
 
-      // Хеширование пароля
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      // Создание пользователя
       const user = this.userRepository.create({
         email,
         password: hashedPassword,
@@ -34,7 +31,6 @@ export class AuthService {
 
       await this.userRepository.save(user);
 
-      // Генерация токена
       const token = this.generateToken(user);
 
       logger.info(`User registered: ${email}`);
@@ -48,19 +44,16 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<{ user: User; token: string }> {
     try {
-      // Поиск пользователя
       const user = await this.userRepository.findOne({ where: { email } });
       if (!user) {
         throw new Error('Invalid credentials');
       }
 
-      // Проверка пароля
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
         throw new Error('Invalid credentials');
       }
 
-      // Генерация токена
       const token = this.generateToken(user);
 
       logger.info(`User logged in: ${email}`);

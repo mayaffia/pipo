@@ -28,7 +28,6 @@ export const logger = winston.createLogger({
   ],
 });
 
-// Если не в production, логируем также в консоль с красивым форматом
 if (config.server.nodeEnv !== 'production') {
   logger.add(
     new winston.transports.Console({
